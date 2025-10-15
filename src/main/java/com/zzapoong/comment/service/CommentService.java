@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -40,6 +41,20 @@ public class CommentService {
         return CommentCreateResponseDTO.builder().id(save.getId()).message("생성 성공").build();
     }
 
+    public CommentEntity updateComment(Long id, String newComment) {
+        CommentEntity comment = commentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 ID의 댓글이 존재하지 않습니다."));
+
+        comment.setComment(newComment);
+
+        return commentRepository.save(comment);
+    }
 
 
+    public void deleteComment(Long id) {
+        if (!commentRepository.existsById(id)) {
+            throw new IllegalArgumentException("삭제할 댓글이 존재하지 않습니다.");
+        }
+        commentRepository.deleteById(id);
+    }
 }
