@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: Zzapoong
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/zzapoong?useSSL=false&serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    generate-ddl: false
+    open-in-view: false
