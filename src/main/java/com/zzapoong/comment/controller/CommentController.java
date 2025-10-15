@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -32,4 +33,26 @@ public class CommentController {
 
         return ResponseEntity.ok(comment);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, Object>> deleteComment(@PathVariable Long id) {
+        commentService.deleteComment(id);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "삭제 성공");
+        response.put("id", id);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<CommentEntity> updateComment(
+            @PathVariable Long id,
+            @RequestBody Map<String, String> request
+    ) {
+        String newComment = request.get("comment");
+        CommentEntity updated = commentService.updateComment(id, newComment);
+        return ResponseEntity.ok(updated);
+    }
+
 }
