@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @Getter
 public class CommentCreateResponseDTO {
     private long id;
-    private String message = "생성 성공";
+    private String message;
 
 }

@@ -1,11 +1,14 @@
 spring:
+  config:
+    import: "classpath:env.properties"
+
   application:
     name: Zzapoong
 
   datasource:
     url: jdbc:mysql://localhost:3306/zzapoong?useSSL=false&serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
     username: root
-    password: 1234
+    password: ${DATABASE_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
